@@ -3,13 +3,10 @@
   "base": "Model",
   "idInjection": true,
   "properties": {
-    "id": {
-      "type": "number",
-      "id": true
-    },
     "dateTime": {
       "type": "date",
-      "required": true
+      "required": true,
+      "id": true
     },
     "sensorType": {
       "type": "string",
@@ -17,10 +14,6 @@
     },
     "name": {
       "type": "string"
-    },
-    "id": {
-      "type": "number",
-      "id": true
     },
     "value": {
       "type": [
