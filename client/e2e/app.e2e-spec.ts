@@ -1,10 +1,10 @@
-import { HohcsClientPage } from './app.po';
+import { ClientPage } from './app.po';
 
-describe('hohcs-client App', function() {
-  let page: HohcsClientPage;
+describe('client App', function() {
+  let page: ClientPage;
 
   beforeEach(() => {
-    page = new HohcsClientPage();
+    page = new ClientPage();
   });
 
   it('should display message saying app works', () => {
