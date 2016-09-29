@@ -1,0 +1,52 @@
+{
+  "name": "dataSample",
+  "base": "Model",
+  "idInjection": true,
+  "properties": {
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "dateTime": {
+      "type": "date",
+      "required": true
+    },
+    "sensorType": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "number",
+      "id": true
+    },
+    "value": {
+      "type": [
+        "number"
+      ],
+      "required": true
+    },
+    "sensorId": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "linked": {
+      "type": "belongsTo",
+      "polymorphic": {
+        "idType": "number"
+      },
+      "properties": {
+        "name": "name"
+      },
+      "options": {
+        "invertProperties": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": []
+}

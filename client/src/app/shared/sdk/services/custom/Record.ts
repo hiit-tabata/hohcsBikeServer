@@ -30,6 +30,215 @@ export class RecordApi extends BaseLoopBackApi {
   }
 
   /**
+   * Find a related item by id for data.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for data
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public findByIdData(id: any, fk: any) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result.map((instance: Record) => new Record(instance));
+  }
+
+  /**
+   * Delete a related item by id for data.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for data
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public destroyByIdData(id: any, fk: any) {
+    let method: string = "DELETE";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for data.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param any fk Foreign key for data
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public updateByIdData(id: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data/:fk";
+    let routeParams: any = {
+      id: id,
+      fk: fk
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Queries data of record.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object filter 
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public getData(id: any, filter: LoopBackFilter = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (filter) urlParams.filter = filter;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in data of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public createData(id: any, data: any = undefined) {
+    let method: string = "POST";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Deletes all data of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public deleteData(id: any) {
+    let method: string = "DELETE";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
+   * Counts data of record.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` - 
+   */
+  public countData(id: any, where: any = undefined) {
+    let method: string = "GET";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data/count";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {};
+    let urlParams: any = {};
+    if (where) urlParams.where = where;
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
+  /**
    * Create a new instance of the model and persist it into the data source.
    *
    * @param object data Request data.
@@ -434,6 +643,39 @@ export class RecordApi extends BaseLoopBackApi {
     }
     return subject.asObservable();
   }
+  /**
+   * Creates a new instance in data of this model.
+   *
+   * @param any id PersistedModel id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Record` object.)
+   * </em>
+   */
+  public createManyData(id: any, data: Array<any> = undefined) {
+    let method: string = "POST";
+    let url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/record/:id/data";
+    let routeParams: any = {
+      id: id
+    };
+    let postBody: any = {
+      data: data
+    };
+    let urlParams: any = {};
+    let result = this.request(method, url, routeParams, urlParams, postBody);
+    return result;
+  }
+
   /**
    * Create a new instance of the model and persist it into the data source.
    *

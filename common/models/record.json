@@ -19,12 +19,6 @@
       "type": "string",
       "required": true
     },
-    "data": {
-      "type": [
-        "object"
-      ],
-      "required": true
-    },
     "location": {
       "type": "string",
       "required": true
@@ -35,7 +29,15 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "data":{
+      "type":"embedsMany",
+      "model": "dataSample",
+      "scope": {
+        "include": "linked"
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }

@@ -35,5 +35,9 @@
   "record": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "dataSample": {
+    "dataSource": "mongodb",
+    "public": false
   }
 }
