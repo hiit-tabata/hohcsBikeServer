@@ -5,7 +5,6 @@
   "properties": {
     "dateTime": {
       "type": "date",
-      "id": true,
       "required": true
     },
     "sensorType": {
