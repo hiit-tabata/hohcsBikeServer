@@ -35,6 +35,10 @@
       "model": "dataSample",
       "scope": {
         "include": "linked"
+      },
+      "options": {
+        "validate": false,
+        "forceId": false
       }
     }
   },
