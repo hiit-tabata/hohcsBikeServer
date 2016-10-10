@@ -1,6 +1,6 @@
 {
   "name": "dataSample",
-  "base": "Model",
+  "base": "PersistedModel",
   "idInjection": true,
   "properties": {
     "dateTime": {
