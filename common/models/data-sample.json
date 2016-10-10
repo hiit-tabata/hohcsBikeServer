@@ -1,6 +1,7 @@
 {
   "name": "dataSample",
   "base": "PersistedModel",
+  "plural": "dataSamples",
   "idInjection": true,
   "properties": {
     "dateTime": {
@@ -25,20 +26,6 @@
     }
   },
   "validations": [],
-  "relations": {
-    "linked": {
-      "type": "belongsTo",
-      "polymorphic": {
-        "idType": "number"
-      },
-      "properties": {
-        "name": "name"
-      },
-      "options": {
-        "invertProperties": true
-      }
-    }
-  },
   "acls": [
     {
       "accessType": "*",
