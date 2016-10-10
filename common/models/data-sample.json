@@ -1,7 +1,7 @@
 {
   "name": "dataSample",
-  "base": "PersistedModel",
   "plural": "dataSamples",
+  "base": "PersistedModel",
   "idInjection": true,
   "properties": {
     "dateTime": {
@@ -26,6 +26,7 @@
     }
   },
   "validations": [],
+  "relations": {},
   "acls": [
     {
       "accessType": "*",
@@ -38,6 +39,13 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "create"
     }
   ],
   "methods": {}

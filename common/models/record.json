@@ -1,6 +1,6 @@
 {
   "name": "record",
-  "plural": "records",
+  "plural": "record",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -30,16 +30,10 @@
   },
   "validations": [],
   "relations": {
-    "data": {
-      "type": "embedsMany",
+    "dataSamples": {
+      "type": "hasMany",
       "model": "dataSample",
-      "scope": {
-        "include": "linked"
-      },
-      "options": {
-        "validate": false,
-        "forceId": false
-      }
+      "foreignKey": ""
     }
   },
   "acls": [
@@ -54,6 +48,20 @@
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$unauthenticated",
+      "permission": "ALLOW",
+      "property": "__create__dataSamples"
     }
   ],
   "methods": {}
