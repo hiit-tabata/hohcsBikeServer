@@ -1,6 +1,6 @@
 {
   "name": "record",
-  "plural": "record",
+  "plural": "records",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
