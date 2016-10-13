@@ -3,6 +3,7 @@
 module.exports = function(Client) {
   /**
    * uplaod a record with all dataSamples
+   * @param {string} id of record
    * @param {date} dateTime date time
    * @param {number} duration the duration of the game
    * @param {string} ip ip
@@ -26,11 +27,11 @@ module.exports = function(Client) {
    * @param {Function(Error, string)} callback
    */
 
-  Client.prototype.csvRecord = function(dateTime, duration, ip, location, deviceId, clientId, bleAddress, sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID, sensor1SensorType, sensor2SensorType, sensor3SensorType, sensor4SensorType, sensor5SensorType, sensor6SensorType, data, callback) {
+  Client.csvRecord = function(recordId, dateTime, duration, ip, location, deviceId, clientId, bleAddress, sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID, sensor1SensorType, sensor2SensorType, sensor3SensorType, sensor4SensorType, sensor5SensorType, sensor6SensorType, data, callback) {
     // let clientInstance = { };
     // Client.create();
 
-    callback(null, new Date().toISOString() );
+    callback(null, "dffff" );
   };
 
 

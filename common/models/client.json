@@ -44,6 +44,12 @@
       "isStatic": true,
       "accepts": [
         {
+          "arg": "recordId",
+          "type": "string",
+          "required": true,
+          "description": "recordId"
+        },
+        {
           "arg": "dateTime",
           "type": "date",
           "required": true,
