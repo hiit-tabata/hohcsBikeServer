@@ -183,6 +183,10 @@
         {
           "path": "/csv/dataSamples",
           "verb": "post"
+        },
+        {
+          "path": "/:clientId/record/:recordId/dataSamples/csv/",
+          "verb": "post"
         }
       ]
     }
