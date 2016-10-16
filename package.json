@@ -6,7 +6,7 @@
     "lint": "eslint .",
     "start": "node .",
     "posttest": "npm run lint && nsp check",
-    "build:sdk": "./node_modules/.bin/lb-sdk server/server ./client/src/app/shared/sdk -d ng4web -i enabled",
+    "build:sdk": "./node_modules/.bin/lb-sdk server/server ../hohcsBikeClient/src/app/shared/sdk -d ng4web -i enabled",
     "clearMongo": "mongo hohcsDB --eval 'db.dropDatabase();'"
   },
   "dependencies": {
