@@ -12,8 +12,9 @@
       "type": "string",
       "required": true
     },
-    "name": {
-      "type": "string"
+    "bleAddress": {
+      "type": "string",
+      "description": "the device attached, ble address"
     },
     "value": {
       "type": [
@@ -22,7 +23,8 @@
       "required": true
     },
     "sensorId": {
-      "type": "string"
+      "type": "string",
+      "description": "id of the sensor generated data"
     }
   },
   "validations": [],

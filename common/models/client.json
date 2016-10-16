@@ -165,7 +165,7 @@
         },
         {
           "arg": "data",
-          "type": "array",
+          "type": "string",
           "required": true,
           "description": "the data string dateTime,s1,s2,s3,s4,s5,s6;        the date format is 2016-10-11T17:10:01.000Z"
         }
