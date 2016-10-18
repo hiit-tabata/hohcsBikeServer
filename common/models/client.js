@@ -123,6 +123,11 @@ module.exports = function(Client) {
         return;
       }
 
+      if(!client){
+        callback(new Error("please inpuit correct client id"),"input error") ;
+        return;
+      }
+
       //find record from record id
 
       // //record object
