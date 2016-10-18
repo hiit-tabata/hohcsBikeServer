@@ -110,7 +110,7 @@ module.exports = function(Client) {
    * @param {string} sensor4SensorType
    * @param {string} sensor5SensorType
    * @param {string} sensor6SensorType
-   * @param {array} data the data string dateTime,s1,s2,s3,s4,s5,s6;        the date format is 2016-10-11T17:10:01.000Z
+   * @param {string} data the data string dateTime,s1,s2,s3,s4,s5,s6;        the date format is 2016-10-11T17:10:01.000Z
    * @param {Function(Error, string)} callback
    */
 

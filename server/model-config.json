@@ -38,7 +38,7 @@
   },
   "dataSample": {
     "dataSource": "mongodb",
-    "public": false
+    "public": true
   },
   "client": {
     "dataSource": "mongodb",
