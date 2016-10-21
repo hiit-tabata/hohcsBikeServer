@@ -129,7 +129,6 @@ module.exports = function(Client) {
         return;
       }
       let t_foundclient = Date.now();
-      console.log("I found a client with " + (t_foundclient-startTime) +"ms");
 
       //find record from record id
 
@@ -150,9 +149,6 @@ module.exports = function(Client) {
         }
 
 
-        let t_foundRecord = Date.now();
-        console.log("I t_foundRecord with " + (t_foundRecord -t_foundclient) +"ms");
-
         //decode data from client
         decodecsvDataSamples(
           bleAddress,
@@ -160,15 +156,11 @@ module.exports = function(Client) {
           [sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID],
           data,
           (clientDataSample)=>{
-            let t_decodecsvDataSamples= Date.now();
-            console.log("decodecsvDataSamples with " + (t_decodecsvDataSamples - t_foundRecord) +"ms");
             //create dataSamples
             record.dataSamples.create(clientDataSample, (err, result)=>{
                 if(err) {
                   callback(err,"fail to create record " + err.toString() );
                 }
-                let t_createRecord= Date.now();
-                console.log("save with " + (t_createRecord-t_decodecsvDataSamples) +"ms");
             });
             //end of dataSamples create
           }
