@@ -10,30 +10,30 @@
   * @return {Array<dataSamples>}
 **/
 
-function decodecsvDataSamples(bleAddress, datatypes, sensorIds, csvStr, callback){
+function decodecsvDataSamples(bleAddress, datatypes, sensorIds, csvStr, onData, onError, onComplete){
   if(datatypes.length != sensorIds.length)
   {
-    callback(new Error("wrong array length in datatypes and sensorIds"));
+    onError(new Error("wrong array length in datatypes and sensorIds"));
     return;
   }
 
   let rowsOfcsv = csvStr.split(';');
 
   if(rowsOfcsv[0].split(",").length != datatypes.length +1){
-      callback(new Error("wrong array length in datatypes || sensorIds with csv data"));
+      onError(new Error("wrong array length in datatypes || sensorIds with csv data"));
       return;
   }
 
   let resultDataSamples = [];
   for(let row of rowsOfcsv){
-    resultDataSamples = resultDataSamples.concat( csvStrToDataSamples(
+    onData(csvStrToDataSamples(
       bleAddress,
       datatypes,
       sensorIds,
       row
-    ) );
+    ));
   }
-  callback(null, resultDataSamples);
+  onComplete();
 }
 
 
@@ -159,28 +159,26 @@ module.exports = function(Client) {
           [sensor1SensorType,sensor2SensorType,sensor3SensorType,sensor4SensorType,sensor5SensorType,sensor6SensorType],
           [sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID],
           data,
-          (err, clientDataSamples)=>{
-            if(err) {
-              callback(err,"fail to decode the string");
-              return;
-            }
-
+          (clientDataSample)=>{
             let t_decodecsvDataSamples= Date.now();
             console.log("decodecsvDataSamples with " + (t_decodecsvDataSamples - t_foundRecord) +"ms");
             //create dataSamples
-            record.dataSamples.create(clientDataSamples, (err, result)=>{
+            record.dataSamples.create(clientDataSample, (err, result)=>{
                 if(err) {
                   callback(err,"fail to create record " + err.toString() );
-                }else{
-                  callback(null,{clientId: clientId, recordId: recordId});
                 }
                 let t_createRecord= Date.now();
-                console.log("decodecsvDataSamples with " + (t_createRecord-t_decodecsvDataSamples) +"ms");
-                console.log("total time with " + (t_createRecord - startTime) +"ms");
+                console.log("save with " + (t_createRecord-t_decodecsvDataSamples) +"ms");
             });
             //end of dataSamples create
           }
           //end of decodecsvDataSamples callback
+          ,(err)=>{callback(err,"fail to create record " + err.toString() );},
+          ()=>{
+            callback(null,{clientId: clientId, recordId: recordId});
+            let t_createRecord= Date.now();
+            console.log("total time with " + (t_createRecord - startTime) +"ms");
+          }
         );
         //end of decodecsvDataSamples
       });
