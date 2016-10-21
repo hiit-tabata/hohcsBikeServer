@@ -116,6 +116,7 @@ module.exports = function(Client) {
 
   Client.csvRecord = function(recordId, dateTime, duration, ip, location, deviceId, clientId, bleAddress, sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID, sensor1SensorType, sensor2SensorType, sensor3SensorType, sensor4SensorType, sensor5SensorType, sensor6SensorType, data, callback) {
 
+    let startTime = Date.now();
     //get client instance
     Client.findById(clientId, (err, client)=>{
       if(err){
@@ -127,6 +128,8 @@ module.exports = function(Client) {
         callback(new Error("please inpuit correct client id"),"input error") ;
         return;
       }
+      let t_foundclient = Date.now();
+      console.log("I found a client with " + (t_foundclient-startTime) +"ms");
 
       //find record from record id
 
@@ -145,6 +148,11 @@ module.exports = function(Client) {
           callback(err,"fail to create record " + err.toString() );
           return;
         }
+
+
+        let t_foundRecord = Date.now();
+        console.log("I t_foundRecord with " + (t_foundRecord -t_foundclient) +"ms");
+
         //decode data from client
         decodecsvDataSamples(
           bleAddress,
@@ -156,13 +164,19 @@ module.exports = function(Client) {
               callback(err,"fail to decode the string");
               return;
             }
+
+            let t_decodecsvDataSamples= Date.now();
+            console.log("decodecsvDataSamples with " + (t_decodecsvDataSamples - t_foundRecord) +"ms");
             //create dataSamples
             record.dataSamples.create(clientDataSamples, (err, result)=>{
                 if(err) {
                   callback(err,"fail to create record " + err.toString() );
                 }else{
-                  callback(null,result);
+                  callback(null,{clientId: clientId, recordId: recordId});
                 }
+                let t_createRecord= Date.now();
+                console.log("decodecsvDataSamples with " + (t_createRecord-t_decodecsvDataSamples) +"ms");
+                console.log("total time with " + (t_createRecord - startTime) +"ms");
             });
             //end of dataSamples create
           }
