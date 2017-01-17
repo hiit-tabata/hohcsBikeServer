@@ -43,5 +43,9 @@
   "client": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "tag": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }

@@ -8,6 +8,9 @@
   "properties": {
     "centerId": {
       "type": "string"
+    },
+    "remarks": {
+      "type": "string"
     }
   },
   "validations": [],

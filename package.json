@@ -7,7 +7,10 @@
     "start": "node .",
     "posttest": "npm run lint && nsp check",
     "build:sdk": "./node_modules/.bin/lb-sdk server/server ../hohcsBikeClient/src/app/shared/sdk -d ng4web -i enabled",
-    "clearMongo": "mongo hohcsDB --eval 'db.dropDatabase();'"
+    "clearMongo": "mongo hohcsDB --eval 'db.dropDatabase();'",
+    "copyBackup": "scp -r root@server.holmantai.net:/data/backup/17_01_2017 /home/holman/Desktop",
+    "backup": "mongodump --out /data/backup/17_01_2017",
+    "restore": "mongorestore /home/holman/Desktop/17_01_2017"
   },
   "dependencies": {
     "compression": "^1.0.3",

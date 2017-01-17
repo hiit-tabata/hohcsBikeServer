@@ -26,6 +26,37 @@
     "deviceId": {
       "type": "string",
       "required": true
+    },
+    "remarks": {
+      "type": "string"
+    },
+    "valid": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "processed": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "sensor1Raw": {
+      "type": "string"
+    },
+    "sensor2Raw": {
+      "type": "string"
+    },
+    "sensor3Raw": {
+      "type": "string"
+    },
+    "sensor4Raw": {
+      "type": "string"
+    },
+    "sensor5Raw": {
+      "type": "string"
+    },
+    "sensor6Raw": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -39,6 +70,11 @@
       "type": "belongsTo",
       "model": "client",
       "foreignKey": "clientId"
+    },
+    "tags": {
+      "type": "hasMany",
+      "model": "tag",
+      "foreignKey": ""
     }
   },
   "acls": [
