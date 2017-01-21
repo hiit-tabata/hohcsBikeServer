@@ -10,7 +10,14 @@
   * @return {Array<dataSamples>}
 **/
 
-function decodecsvDataSamples(bleAddress, datatypes, sensorIds, csvStr, onData, onError, onComplete){
+function decodecsvDataSamples(
+  bleAddress,
+  datatypes,
+  sensorIds,
+  csvStr,
+  onData,
+  onError,
+  onComplete){
   if(datatypes.length != sensorIds.length)
   {
     onError(new Error("wrong array length in datatypes and sensorIds"));
@@ -26,14 +33,19 @@ function decodecsvDataSamples(bleAddress, datatypes, sensorIds, csvStr, onData, 
 
   let resultDataSamples = [];
   for(let row of rowsOfcsv){
-    onData(csvStrToDataSamples(
-      bleAddress,
-      datatypes,
-      sensorIds,
-      row
-    ));
+    resultDataSamples.push(
+      csvStrToDataSamples(
+          bleAddress,
+          datatypes,
+          sensorIds,
+          row
+        )
+    );
   }
-  onComplete();
+  for(let sample of resultDataSamples)
+    onData(sample);
+
+  onComplete(resultDataSamples);
 }
 
 
@@ -56,6 +68,51 @@ function csvStrToDataSamples(bleAddress, datatypes, sensorIds, csvStr){
   }
 
   return result;
+}
+
+function decodeDataInToJsonStr(
+  datatypes,
+  sensorIds,
+  csvStr){
+  if(datatypes.length != sensorIds.length)
+  {
+    onError(new Error("wrong array length in datatypes and sensorIds"));
+    return;
+  }
+
+  let rowsOfcsv = csvStr.split(';');
+
+  if(rowsOfcsv[0].split(",").length != datatypes.length +1){
+      onError(new Error("wrong array length in datatypes || sensorIds with csv data"));
+      return;
+  }
+  let resultStr = "";
+
+  for(let i in rowsOfcsv){
+    if(i>0)
+      resultStr+=","
+    resultStr+=getDataString(rowsOfcsv[i]);
+  }
+  return resultStr;
+}
+
+function getDataString(csvStr){
+  let csvCol = csvStr.split(',');
+  let obj = {
+    timestamp: csvCol[0]
+  };
+
+  for(let i = 1; i< csvCol.length; i++){
+    obj["sensor"+i] = csvCol[0];
+  }
+
+  return JSON.stringify(obj);
+}
+
+function insertStringInRecordData(oldString, dataStr){
+  let lastIndex = oldString.length-1;
+  if(oldString.length > 2)   dataStr = ","+ dataStr;
+  return oldString.slice(0, lastIndex) + dataStr + oldString.slice(lastIndex);
 }
 
 /**
@@ -131,7 +188,6 @@ module.exports = function(Client) {
       let t_foundclient = Date.now();
 
       //find record from record id
-
       // //record object
       // let recordData = {
       //   dateTime: dateTime,
@@ -148,31 +204,53 @@ module.exports = function(Client) {
           return;
         }
 
-
-        //decode data from client
-        decodecsvDataSamples(
-          bleAddress,
+        record.data = insertStringInRecordData(record.data,decodeDataInToJsonStr(
           [sensor1SensorType,sensor2SensorType,sensor3SensorType,sensor4SensorType,sensor5SensorType,sensor6SensorType],
           [sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID],
-          data,
-          (clientDataSample)=>{
-            //create dataSamples
-            record.dataSamples.create(clientDataSample, (err, result)=>{
-                if(err) {
-                  callback(err,"fail to create record " + err.toString() );
-                }
-            });
-            //end of dataSamples create
-          }
-          //end of decodecsvDataSamples callback
-          ,(err)=>{callback(err,"fail to create record " + err.toString() );},
-          ()=>{
-            callback(null,{clientId: clientId, recordId: recordId});
-            let t_createRecord= Date.now();
-            console.log("total time with " + (t_createRecord - startTime) +"ms");
-          }
-        );
-        //end of decodecsvDataSamples
+          data
+        ));
+
+        record.bleAddress = bleAddress;
+        record.dataTypes = sensor1SensorType +","+ sensor2SensorType +","+ sensor3SensorType +","+ sensor4SensorType +","+ sensor5SensorType +","+ sensor6SensorType;
+        record.sensorIds = sensor1ID +","+ sensor2ID +","+ sensor3ID +","+ sensor4ID +","+ sensor5ID +","+ sensor6ID;
+
+        record.save({},(err, record)=>{
+          if(err) callback(err,"fail to create record " + err.toString() );
+
+          callback(null,{clientId: clientId, recordId: recordId});
+          let t_createRecord= Date.now();
+          console.log("total time with " + (t_createRecord - startTime) +"ms");
+        });
+
+        // //decode data from client
+        // decodecsvDataSamples(
+        //   bleAddress,
+        //   [sensor1SensorType,sensor2SensorType,sensor3SensorType,sensor4SensorType,sensor5SensorType,sensor6SensorType],
+        //   [sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID],
+        //   data,
+        //   (clientDataSample)=>{
+        //     //create dataSamples
+        //     record.dataSamples.create(clientDataSample, (err, result)=>{
+        //         if(err) {
+        //           callback(err,"fail to create record " + err.toString() );
+        //         }
+        //     });
+        //     //end of dataSamples create
+        //   }
+        //   //end of decodecsvDataSamples callback
+        //   ,(err)=>{callback(err,"fail to create record " + err.toString() );},
+        //   (dataSamples)=>{
+        //     record.dataSamples.create(dataSamples, (err, result)=>{
+        //       if(err) callback(err,"fail to create record " + err.toString() );
+        //
+        //       callback(null,{clientId: clientId, recordId: recordId});
+        //       let t_createRecord= Date.now();
+        //       console.log("total time with " + (t_createRecord - startTime) +"ms");
+        //     });
+        //   }
+        // );
+        // //end of decodecsvDataSamples
+
       });
       //end of record create
     });

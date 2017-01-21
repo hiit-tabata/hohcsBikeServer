@@ -32,31 +32,27 @@
     },
     "valid": {
       "type": "boolean",
-      "required": true,
       "default": true
     },
     "processed": {
       "type": "boolean",
-      "required": true,
       "default": false
     },
-    "sensor1Raw": {
-      "type": "string"
+    "data": {
+      "type": "string",
+      "default": "[]"
     },
-    "sensor2Raw": {
-      "type": "string"
+    "dataTypes":{
+      "type": "string",
+      "default": ""
     },
-    "sensor3Raw": {
-      "type": "string"
+    "sensorIds":{
+      "type": "string",
+      "default": ""
     },
-    "sensor4Raw": {
-      "type": "string"
-    },
-    "sensor5Raw": {
-      "type": "string"
-    },
-    "sensor6Raw": {
-      "type": "string"
+    "bleAddress":{
+      "type": "string",
+      "default": ""
     }
   },
   "validations": [],

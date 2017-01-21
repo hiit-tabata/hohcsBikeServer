@@ -41,6 +41,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { UserApi } from './services/custom/User';
 import { RecordApi } from './services/custom/Record';
+import { DataSampleApi } from './services/custom/DataSample';
+import { ClientApi } from './services/custom/Client';
+import { TagApi } from './services/custom/Tag';
 
 @NgModule({
   imports:      [ CommonModule, HttpModule ],
@@ -59,7 +62,10 @@ export class SDKModule {
       LoggerService,
       JSONSearchParams,
       UserApi,
-      RecordApi
+      RecordApi,
+      DataSampleApi,
+      ClientApi,
+      TagApi
       ]
     };
   }
