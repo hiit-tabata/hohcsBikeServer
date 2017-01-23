@@ -10,7 +10,9 @@
     "clearMongo": "mongo hohcsDB --eval 'db.dropDatabase();'",
     "copyBackup": "scp -r root@server.holmantai.net:/data/backup/17_01_2017 /home/holman/Desktop",
     "backup": "mongodump --out /data/backup/17_01_2017",
-    "restore": "mongorestore /home/holman/Desktop/17_01_2017"
+    "restore": "mongorestore /home/holman/Desktop/17_01_2017",
+    "backupAndRestoreLocal": "sh ./backupServerAndCopyToLocal.sh",
+    "backupAndDeploy": "sh ./backupAndDeploy.sh"
   },
   "dependencies": {
     "compression": "^1.0.3",
