@@ -89,21 +89,27 @@ function decodeDataInToJsonStr(
   let resultStr = "";
 
   for(let i in rowsOfcsv){
+    let TempString = getDataString(rowsOfcsv[i]);
+    if(TempString == null)
+      continue;
+
     if(i>0)
       resultStr+=","
-    resultStr+=getDataString(rowsOfcsv[i]);
+    resultStr+=TempString;
   }
   return resultStr;
 }
 
 function getDataString(csvStr){
   let csvCol = csvStr.split(',');
+  if(csvCol.length<5)
+    return null;
   let obj = {
     timestamp: csvCol[0]
   };
 
   for(let i = 1; i< csvCol.length; i++){
-    obj["sensor"+i] = csvCol[0];
+    obj["sensor"+i] = csvCol[i];
   }
 
   return JSON.stringify(obj);
@@ -210,6 +216,12 @@ module.exports = function(Client) {
           data
         ));
 
+        let dataObj = JSON.parse(record.data);
+        console.log(record.data);
+        console.log(dataObj);
+        record.duration = new Date(dataObj[dataObj.length-3].timestamp).getTime() - new Date(dataObj[0].timestamp).getTime();
+        console.log(`record.duration ${record.duration}`);
+
         record.bleAddress = bleAddress;
         record.dataTypes = sensor1SensorType +","+ sensor2SensorType +","+ sensor3SensorType +","+ sensor4SensorType +","+ sensor5SensorType +","+ sensor6SensorType;
         record.sensorIds = sensor1ID +","+ sensor2ID +","+ sensor3ID +","+ sensor4ID +","+ sensor5ID +","+ sensor6ID;
@@ -221,7 +233,6 @@ module.exports = function(Client) {
           let t_createRecord= Date.now();
           console.log("total time with " + (t_createRecord - startTime) +"ms");
         });
-
         // //decode data from client
         // decodecsvDataSamples(
         //   bleAddress,
