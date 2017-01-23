@@ -225,7 +225,7 @@ module.exports = function(Client) {
         record.bleAddress = bleAddress;
         record.dataTypes = sensor1SensorType +","+ sensor2SensorType +","+ sensor3SensorType +","+ sensor4SensorType +","+ sensor5SensorType +","+ sensor6SensorType;
         record.sensorIds = sensor1ID +","+ sensor2ID +","+ sensor3ID +","+ sensor4ID +","+ sensor5ID +","+ sensor6ID;
-
+        record.processed = true;
         record.save({},(err, record)=>{
           if(err) callback(err,"fail to create record " + err.toString() );
 
