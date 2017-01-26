@@ -42,17 +42,21 @@
       "type": "string",
       "default": "[]"
     },
-    "dataTypes":{
+    "dataTypes": {
       "type": "string",
       "default": ""
     },
-    "sensorIds":{
+    "sensorIds": {
       "type": "string",
       "default": ""
     },
-    "bleAddress":{
+    "bleAddress": {
       "type": "string",
       "default": ""
+    },
+    "labelJson": {
+      "type": "string",
+      "default": "{}"
     }
   },
   "validations": [],

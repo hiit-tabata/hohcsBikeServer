@@ -47,5 +47,9 @@
   "tag": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "gridfs": {
+    "dataSource": "storage",
+    "public": true
   }
 }
