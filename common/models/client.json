@@ -11,6 +11,66 @@
     },
     "remarks": {
       "type": "string"
+    },
+    "labeledDate":{
+      "type": "string",
+      "default": ""
+    },
+    "Dementia": {
+      "type": "boolean",
+      "description":""
+    },
+    "Stroke": {
+      "type": "boolean",
+      "description":""
+    },
+    "Leg_Surgery": {
+      "type": "boolean",
+      "description":""
+    },
+    "Hospitalization_Past_History": {
+      "type": "boolean",
+      "description":""
+    },
+    "Hospitalization_Recent_Event": {
+      "type": "boolean",
+      "description":""
+    },
+    "Hospitalization_No_Significant_History": {
+      "type": "boolean",
+      "description":""
+    },
+    "Fall_Past_History": {
+      "type": "boolean",
+      "description":""
+    },
+    "Fall_Recent_Event": {
+      "type": "boolean",
+      "description":""
+    },
+    "Fall_No_Significant_History": {
+      "type": "boolean",
+      "description":""
+    },
+    "Waking_ability": {
+      "type": "string",
+      "default": "",
+      "description": "High_performer | Walk_Unaided | Walk_With_Stick | Walk_With_Quadripod | Walk_With_Frame | Cannot_Walk"
+    },
+    "Mobilize_From_Chair": {
+      "type": "string",
+      "default": "",
+      "description": "Independent | Mild_Assistance | CANNOT"
+    },
+    "Hip": {
+      "type": "string",
+      "default": "",
+      "description": "Stable | Stable_But_High_Risk_Feature | Functional_Deficit_But_Well_Adapted | Unstable"
+    },
+    "Trunk": {
+      "type": "string",
+      "default": "",
+      "description": "Stable | Stable_But_High_Risk_Feature | Functional_Deficit_But_Well_Adapted | Unstable"
     }
   },
   "validations": [],

@@ -58,6 +58,10 @@
       "type": "string",
       "default": "{}"
     },
+    "labeledDate":{
+      "type": "string",
+      "default": ""
+    },
     "Bike": {
       "type": "string",
       "default": "",
