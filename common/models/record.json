@@ -57,6 +57,81 @@
     "labelJson": {
       "type": "string",
       "default": "{}"
+    },
+    "Bike": {
+      "type": "string",
+      "default": "",
+      "description":"Bike: Bike_Strong | Bike_Moderate |Bike_Weak"
+    },
+    "Inattention": {
+      "type": "boolean",
+      "description":"Rest: true | false"
+    },
+    "Rest": {
+      "type": "boolean",
+      "description":"Rest: true | false"
+    },
+    "Test_complete": {
+      "type": "boolean",
+      "description":"Test_complete: true | false"
+    },
+    "Hip_Pelvic_Shift": {
+      "type": "boolean",
+      "description":"Hip_Pelvic_Shift: true | false"
+    },
+    "Hip_Leave_Sit": {
+      "type": "boolean",
+      "description":"Hip_Leave_Sit: true | false"
+    },
+    "Hip_Pendulum_Movement": {
+      "type": "boolean",
+      "description":"Hip_Pendulum_Movement: true | false"
+    },
+    "Hip_Disconnection_Left": {
+      "type": "boolean",
+      "description":"Hip_Disconnection_Left: true | false"
+    },
+    "Hip_Disconnection_Right": {
+      "type": "boolean",
+      "description":"Hip_Disconnection_Right: true | false       //transform from Hip_Disconnection_Connected"
+    },
+    "Trunk_Lean_Stably": {
+      "type": "boolean",
+      "description":"Trunk_Lean_Stably: true | false"
+    },
+    "Trunk_Lean_Evenly": {
+      "type": "string",
+      "default": "",
+      "description":"Trunk_Lean_Evenly: Evenly | Left_Predorminantly | Right_Predominantly"
+    },
+    "Trunk_Fall_Like_Pattern": {
+      "type": "boolean",
+      "description":"Trunk_Fall_Like_Pattern: true | false"
+    },
+    "Trunk_Pendulum": {
+      "type": "boolean",
+      "description":"Trunk_Pendulum: true | false"
+    },
+    "Fatigue": {
+      "type": "boolean",
+      "description":"Fatigue: true | false"
+    },
+    "Trunk_Leave_The_Lean": {
+      "type": "boolean",
+      "description":"Trunk_Leave_The_Lean: true | false"
+    },
+    "Trunk_Disconnection_Left": {
+      "type": "boolean",
+      "description":"Trunk_Disconnection_Left: true | false     //transform from trunk_Disconnection_Connected"
+    },
+    "Trunk_Disconnection_Right": {
+      "type": "boolean",
+      "description":"  Trunk_Disconnection_Right: true | false   //transform from trunk_Disconnection_Connected"
+    },
+    "Leg_coordinated": {
+      "type": "string",
+      "default": "",
+      "description": "Coordinated | Most_Of_The_Time | Not_Coordinated"
     }
   },
   "validations": [],
