@@ -221,6 +221,8 @@ module.exports = function(Client) {
           data,
           callback
         ));
+
+        console.log(record.data);
         try{
           fs.writeFileSync('/data/smaple.json', JSON.stringify(record.data));
         }
