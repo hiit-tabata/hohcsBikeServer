@@ -73,9 +73,12 @@ function csvStrToDataSamples(bleAddress, datatypes, sensorIds, csvStr){
 function decodeDataInToJsonStr(
   datatypes,
   sensorIds,
-  csvStr){
+  csvStr,
+  onError){
   if(datatypes.length != sensorIds.length)
   {
+    console.log(`datatypes ${datatypes}`)
+    console.log(`sensorIds ${sensorIds}`)
     onError(new Error("wrong array length in datatypes and sensorIds"));
     return;
   }
@@ -213,7 +216,8 @@ module.exports = function(Client) {
         record.data = insertStringInRecordData(record.data,decodeDataInToJsonStr(
           [sensor1SensorType,sensor2SensorType,sensor3SensorType,sensor4SensorType,sensor5SensorType,sensor6SensorType],
           [sensor1ID, sensor2ID, sensor3ID, sensor4ID, sensor5ID, sensor6ID],
-          data
+          data,
+          callback
         ));
 
         let dataObj = JSON.parse(record.data);

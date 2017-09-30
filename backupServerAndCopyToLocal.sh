@@ -12,4 +12,4 @@ scp -r root@server.holmantai.net:"/data/backup/"$timeFile "/home/holman/Desktop/
 echo "---- clear local db -------"
 npm run clearMongo
 echo "---- restore local db -------"
-npm run restore
+mongorestore "/home/holman/Desktop/"$timeFile --noIndexRestore
