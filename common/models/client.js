@@ -1,5 +1,7 @@
 'use strict';
 
+var fs = require("fs")
+
 /**
   * decode the csv string into array of dataSamples
   * @param {string} bleAddress
@@ -219,7 +221,12 @@ module.exports = function(Client) {
           data,
           callback
         ));
-
+        try{
+          fs.writeFileSync('/data/smaple.json', JSON.stringify(record.data));
+        }
+        catch(e){
+          console.error(e)
+        }
         let dataObj = JSON.parse(record.data);
         console.log(record.data);
         console.log(dataObj);
